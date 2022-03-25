@@ -8,7 +8,7 @@ This document serves as an addtional resource to the github and instructions alr
 ## Overall Pipeline Summary
 raw RAD reads (fastq file) -> see [RADseq_pipeline](https://github.com/kiralong/RADseq_pipeline) -> `RADpainter` file from `stacks` -> `RADpainter` -> fineSTRUCURE -> graph outputs
 
-## Pipelline Steps
+## Pipeline Steps
 
 ### Step 1: Process raw RAD reads
 See [RADseq_pipeline](https://github.com/kiralong/RADseq_pipeline) for instructions on how to process raw RAD reads after you get your giant fastq.gz file from the sequencing facility. At the step for running `populations` in `stacks`, you will need to make sure you add the flag `--radpainter` to have the `populations` module output a radpainter file, the preferred input of radpainter. Make sure that you are filtering by haplotypes, and not just snps, as radpainter is a haplotype level analysis. Make sure you use the flag `--filter-haplotype-wise` along with the standard filters `-r .80`, `-p # pops`, and `-mac 3`. Even if you have a whitelist of filtered snps from before, note that reapplying these filters for haplotypes may  remove some loci if the haplotype is missing some data but that snp wasn't. In this pipeline, I ran 10k loci from a whitelist, but `fineRADstructure` can handle more loci, if desired. If you want to learn more on how `stacks` filtlers and handles haplotypes and the respective haplotype outputs see the [protocol paper](https://www.biorxiv.org/content/10.1101/2021.11.02.466953v1) and [stacks 2 paper](https://onlinelibrary.wiley.com/doi/full/10.1111/mec.15253).
